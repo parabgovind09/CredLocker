@@ -1,0 +1,43 @@
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop (main)
+$ git clone https://github.com/parabgovind09/CredLocker.git
+Cloning into 'CredLocker'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+
+-----------------------------------------------------------------------------
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        PythonVersion/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git add .
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git commit -m "Added Python Version .exe file"
+[main 0c6cd84] Added Python Version .exe file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 PythonVersion/python-3.12.3-amd64.exe
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+------------------------------------------------------------------------------------
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$
+
