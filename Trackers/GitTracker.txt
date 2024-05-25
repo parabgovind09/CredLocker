@@ -70,5 +70,61 @@ nothing to commit, working tree clean
 
 --------------------------------------------------------------------------------------------
 
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
 
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Trackers/GitTracker.txt
 
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        PinataCRUD/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git add .
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git commit -m "Implemented PinataCRUD Operations v.1.0"
+[main c8471dd] Implemented PinataCRUD Operations v.1.0
+ 10 files changed, 124 insertions(+), 1 deletion(-)
+ create mode 100644 PinataCRUD/DeleteOperation.py
+ create mode 100644 PinataCRUD/PinataCredentials.py
+ create mode 100644 PinataCRUD/RetrieveOperation.py
+ create mode 100644 PinataCRUD/UpdateOperation.py
+ create mode 100644 PinataCRUD/UploadOperation.py
+ create mode 100644 PinataCRUD/__init__.py
+ create mode 100644 PinataCRUD/__pycache__/DeleteOperation.cpython-312.pyc
+ create mode 100644 PinataCRUD/__pycache__/PinataCredentials.cpython-312.pyc
+ create mode 100644 PinataCRUD/__pycache__/UploadOperation.cpython-312.pyc
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 3 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+---------------------------------------------------------------------------------------------------
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git push -u origin main
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (23/23), done.
+Writing objects: 100% (24/24), 25.22 MiB | 3.25 MiB/s, done.
+Total 24 (delta 3), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (3/3), done.
+To https://github.com/parabgovind09/CredLocker.git
+   873d4da..c8471dd  main -> main
+branch 'main' set up to track 'origin/main'.
+
+-----------------------------------------------------------------------------------------------------

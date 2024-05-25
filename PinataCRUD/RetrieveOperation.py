@@ -1,5 +1,4 @@
 import requests
-import DeleteOperation
 
 # Function to retrieve file from IPFS via Pinata
 def retrieve_from_ipfs(ipfs_hash):
