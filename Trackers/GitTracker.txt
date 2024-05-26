@@ -128,3 +128,58 @@ To https://github.com/parabgovind09/CredLocker.git
 branch 'main' set up to track 'origin/main'.
 
 -----------------------------------------------------------------------------------------------------
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   PinataCRUD/RetrieveOperation.py
+        modified:   PinataCRUD/UploadOperation.py
+        modified:   Trackers/GitTracker.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        PinataCRUD/HashGenerator.py
+        PinataCRUD/VerifyOperation.py
+        PinataCRUD/__pycache__/HashGenerator.cpython-312.pyc
+        PinataCRUD/__pycache__/RetrieveOperation.cpython-312.pyc
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git add .
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git commit -m "Added verify operation in PinataCRUD Operations v.2.0"
+[main 5e9be7d] Added verify operation in PinataCRUD Operations v.2.0
+ 7 files changed, 113 insertions(+), 3 deletions(-)
+ create mode 100644 PinataCRUD/HashGenerator.py
+ create mode 100644 PinataCRUD/VerifyOperation.py
+ create mode 100644 PinataCRUD/__pycache__/HashGenerator.cpython-312.pyc
+ create mode 100644 PinataCRUD/__pycache__/RetrieveOperation.cpython-312.pyc
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git push origin main -f
+Enumerating objects: 19, done.
+Counting objects: 100% (19/19), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 3.44 KiB | 880.00 KiB/s, done.
+Total 12 (delta 5), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+To https://github.com/parabgovind09/CredLocker.git
+   c8471dd..5e9be7d  main -> main
+
+----------------------------------------------------------------------------------------

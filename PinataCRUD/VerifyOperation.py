@@ -20,11 +20,9 @@ def verify_file_contents(ipfs_hash, local_file_path):
 
     # Fourth compare the hashes
     if ipfs_hash_calculated == local_file_hash:
-        print("File contents match the contents stored on IPFS.")
+        print("Local file contents match the file contents stored on IPFS.")
     else:
-        print("File contents do not match the contents stored on IPFS.")
+        print("Local file contents do not match the file contents stored on IPFS.")
 
 
-##ipfs_hash = "QmYVAAfnqtEMqBqRggma24kSFY51CZM61JrzYPz9SJVL5m"
-##local_file_path = "C:\\Users\\Minal\\Desktop\\CredLocker\\README.md"
-##verify_file_contents(ipfs_hash, local_file_path)
+#verify_file_contents("QmRSDGXdZx7PZbLAWMT39xH9HWAnXHHMvHUhLC7VmMoA9h", "C:\\Users\\Minal\\Desktop\\CredLocker\\README.md")
