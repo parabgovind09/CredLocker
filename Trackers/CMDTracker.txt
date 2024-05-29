@@ -1,417 +1,89 @@
-Microsoft Windows [Version 10.0.19045.4291]
+Microsoft Windows [Version 10.0.19045.4412]
 (c) Microsoft Corporation. All rights reserved.
 
 C:\Users\Minal>python --version
-Python 3.12.3
-
-C:\Users\Minal>pip install --upgrade pip
-Requirement already satisfied: pip in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (24.0)
-
-C:\Users\Minal>python -m pip install --upgrade pip
-Requirement already satisfied: pip in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (24.0)
+Python 3.9.2
 
 C:\Users\Minal>pip install web3
-Collecting web3
-  Downloading web3-6.19.0-py3-none-any.whl.metadata (4.5 kB)
-Collecting aiohttp>=3.7.4.post0 (from web3)
-  Using cached aiohttp-3.9.5-cp312-cp312-win_amd64.whl.metadata (7.7 kB)
-Collecting eth-abi>=4.0.0 (from web3)
-  Using cached eth_abi-5.1.0-py3-none-any.whl.metadata (5.1 kB)
-Collecting eth-account<0.13,>=0.8.0 (from web3)
-  Using cached eth_account-0.12.3-py3-none-any.whl.metadata (5.1 kB)
-Collecting eth-hash>=0.5.1 (from eth-hash[pycryptodome]>=0.5.1->web3)
-  Using cached eth_hash-0.7.0-py3-none-any.whl.metadata (5.4 kB)
-Collecting eth-typing!=4.2.0,>=3.0.0 (from web3)
-  Using cached eth_typing-4.2.3-py3-none-any.whl.metadata (5.0 kB)
-Collecting eth-utils>=2.1.0 (from web3)
-  Using cached eth_utils-4.1.1-py3-none-any.whl.metadata (5.4 kB)
-Collecting hexbytes<0.4.0,>=0.1.0 (from web3)
-  Using cached hexbytes-0.3.1-py3-none-any.whl.metadata (5.5 kB)
-Collecting jsonschema>=4.0.0 (from web3)
-  Using cached jsonschema-4.22.0-py3-none-any.whl.metadata (8.2 kB)
-Collecting lru-dict<1.3.0,>=1.1.6 (from web3)
-  Using cached lru-dict-1.2.0.tar.gz (10 kB)
-  Installing build dependencies ... done
-  Getting requirements to build wheel ... done
-  Installing backend dependencies ... done
-  Preparing metadata (pyproject.toml) ... done
-Collecting protobuf>=4.21.6 (from web3)
-  Downloading protobuf-5.27.0-cp310-abi3-win_amd64.whl.metadata (592 bytes)
-Collecting requests>=2.16.0 (from web3)
-  Downloading requests-2.32.2-py3-none-any.whl.metadata (4.6 kB)
-Collecting typing-extensions>=4.0.1 (from web3)
-  Downloading typing_extensions-4.12.0-py3-none-any.whl.metadata (3.0 kB)
-Collecting websockets>=10.0.0 (from web3)
-  Using cached websockets-12.0-cp312-cp312-win_amd64.whl.metadata (6.8 kB)
-Collecting pyunormalize>=15.0.0 (from web3)
-  Using cached pyunormalize-15.1.0-py3-none-any.whl
-Collecting pywin32>=223 (from web3)
-  Using cached pywin32-306-cp312-cp312-win_amd64.whl.metadata (6.5 kB)
-Collecting aiosignal>=1.1.2 (from aiohttp>=3.7.4.post0->web3)
-  Using cached aiosignal-1.3.1-py3-none-any.whl.metadata (4.0 kB)
-Collecting attrs>=17.3.0 (from aiohttp>=3.7.4.post0->web3)
-  Using cached attrs-23.2.0-py3-none-any.whl.metadata (9.5 kB)
-Collecting frozenlist>=1.1.1 (from aiohttp>=3.7.4.post0->web3)
-  Using cached frozenlist-1.4.1-cp312-cp312-win_amd64.whl.metadata (12 kB)
-Collecting multidict<7.0,>=4.5 (from aiohttp>=3.7.4.post0->web3)
-  Using cached multidict-6.0.5-cp312-cp312-win_amd64.whl.metadata (4.3 kB)
-Collecting yarl<2.0,>=1.0 (from aiohttp>=3.7.4.post0->web3)
-  Using cached yarl-1.9.4-cp312-cp312-win_amd64.whl.metadata (32 kB)
-Collecting parsimonious<0.11.0,>=0.10.0 (from eth-abi>=4.0.0->web3)
-  Using cached parsimonious-0.10.0-py3-none-any.whl.metadata (25 kB)
-Collecting bitarray>=2.4.0 (from eth-account<0.13,>=0.8.0->web3)
-  Using cached bitarray-2.9.2-cp312-cp312-win_amd64.whl.metadata (35 kB)
-Collecting eth-keyfile>=0.6.0 (from eth-account<0.13,>=0.8.0->web3)
-  Using cached eth_keyfile-0.8.1-py3-none-any.whl.metadata (8.5 kB)
-Collecting eth-keys>=0.4.0 (from eth-account<0.13,>=0.8.0->web3)
-  Using cached eth_keys-0.5.1-py3-none-any.whl.metadata (13 kB)
-Collecting eth-rlp>=2.1.0 (from eth-account<0.13,>=0.8.0->web3)
-  Using cached eth_rlp-2.1.0-py3-none-any.whl.metadata (4.6 kB)
-INFO: pip is looking at multiple versions of eth-account to determine which version is compatible with other requirements. This could take a while.
-Collecting eth-account<0.13,>=0.8.0 (from web3)
-  Using cached eth_account-0.12.2-py3-none-any.whl.metadata (5.1 kB)
-  Using cached eth_account-0.12.1-py3-none-any.whl.metadata (5.1 kB)
-  Using cached eth_account-0.12.0-py3-none-any.whl.metadata (5.1 kB)
-  Using cached eth_account-0.11.2-py3-none-any.whl.metadata (5.1 kB)
-Collecting rlp>=1.0.0 (from eth-account<0.13,>=0.8.0->web3)
-  Using cached rlp-4.0.1-py3-none-any.whl.metadata (4.6 kB)
-Collecting ckzg>=0.4.3 (from eth-account<0.13,>=0.8.0->web3)
-  Using cached ckzg-1.0.2-cp312-cp312-win_amd64.whl.metadata (718 bytes)
-Collecting pycryptodome<4,>=3.6.6 (from eth-hash[pycryptodome]>=0.5.1->web3)
-  Using cached pycryptodome-3.20.0-cp35-abi3-win_amd64.whl.metadata (3.4 kB)
-Collecting cytoolz>=0.10.1 (from eth-utils>=2.1.0->web3)
-  Using cached cytoolz-0.12.3-cp312-cp312-win_amd64.whl.metadata (4.7 kB)
-Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=4.0.0->web3)
-  Using cached jsonschema_specifications-2023.12.1-py3-none-any.whl.metadata (3.0 kB)
-Collecting referencing>=0.28.4 (from jsonschema>=4.0.0->web3)
-  Using cached referencing-0.35.1-py3-none-any.whl.metadata (2.8 kB)
-Collecting rpds-py>=0.7.1 (from jsonschema>=4.0.0->web3)
-  Using cached rpds_py-0.18.1-cp312-none-win_amd64.whl.metadata (4.2 kB)
-Collecting charset-normalizer<4,>=2 (from requests>=2.16.0->web3)
-  Using cached charset_normalizer-3.3.2-cp312-cp312-win_amd64.whl.metadata (34 kB)
-Collecting idna<4,>=2.5 (from requests>=2.16.0->web3)
-  Using cached idna-3.7-py3-none-any.whl.metadata (9.9 kB)
-Collecting urllib3<3,>=1.21.1 (from requests>=2.16.0->web3)
-  Using cached urllib3-2.2.1-py3-none-any.whl.metadata (6.4 kB)
-Collecting certifi>=2017.4.17 (from requests>=2.16.0->web3)
-  Using cached certifi-2024.2.2-py3-none-any.whl.metadata (2.2 kB)
-Collecting toolz>=0.8.0 (from cytoolz>=0.10.1->eth-utils>=2.1.0->web3)
-  Using cached toolz-0.12.1-py3-none-any.whl.metadata (5.1 kB)
-INFO: pip is looking at multiple versions of eth-rlp to determine which version is compatible with other requirements. This could take a while.
-Collecting eth-rlp>=0.3.0 (from eth-account<0.13,>=0.8.0->web3)
-  Using cached eth_rlp-2.0.0-py3-none-any.whl.metadata (4.6 kB)
-  Using cached eth_rlp-1.0.1-py3-none-any.whl.metadata (4.5 kB)
-Collecting regex>=2022.3.15 (from parsimonious<0.11.0,>=0.10.0->eth-abi>=4.0.0->web3)
-  Downloading regex-2024.5.15-cp312-cp312-win_amd64.whl.metadata (41 kB)
-     ---------------------------------------- 42.0/42.0 kB 119.7 kB/s eta 0:00:00
-Downloading web3-6.19.0-py3-none-any.whl (1.6 MB)
-   ---------------------------------------- 1.6/1.6 MB 1.6 MB/s eta 0:00:00
-Using cached aiohttp-3.9.5-cp312-cp312-win_amd64.whl (369 kB)
-Using cached eth_abi-5.1.0-py3-none-any.whl (29 kB)
-Using cached eth_account-0.11.2-py3-none-any.whl (355 kB)
-Using cached eth_hash-0.7.0-py3-none-any.whl (8.7 kB)
-Using cached eth_typing-4.2.3-py3-none-any.whl (18 kB)
-Using cached eth_utils-4.1.1-py3-none-any.whl (96 kB)
-Using cached hexbytes-0.3.1-py3-none-any.whl (5.9 kB)
-Using cached jsonschema-4.22.0-py3-none-any.whl (88 kB)
-Downloading protobuf-5.27.0-cp310-abi3-win_amd64.whl (426 kB)
-   ---------------------------------------- 426.9/426.9 kB 684.2 kB/s eta 0:00:00
-Using cached pywin32-306-cp312-cp312-win_amd64.whl (9.2 MB)
-Downloading requests-2.32.2-py3-none-any.whl (63 kB)
-   ---------------------------------------- 63.9/63.9 kB 81.8 kB/s eta 0:00:00
-Downloading typing_extensions-4.12.0-py3-none-any.whl (37 kB)
-Using cached websockets-12.0-cp312-cp312-win_amd64.whl (124 kB)
-Using cached aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
-Using cached attrs-23.2.0-py3-none-any.whl (60 kB)
-Using cached bitarray-2.9.2-cp312-cp312-win_amd64.whl (126 kB)
-Using cached certifi-2024.2.2-py3-none-any.whl (163 kB)
-Using cached charset_normalizer-3.3.2-cp312-cp312-win_amd64.whl (100 kB)
-Using cached ckzg-1.0.2-cp312-cp312-win_amd64.whl (69 kB)
-Using cached cytoolz-0.12.3-cp312-cp312-win_amd64.whl (363 kB)
-Using cached eth_keyfile-0.8.1-py3-none-any.whl (7.5 kB)
-Using cached eth_keys-0.5.1-py3-none-any.whl (21 kB)
-Using cached eth_rlp-1.0.1-py3-none-any.whl (4.9 kB)
-Using cached frozenlist-1.4.1-cp312-cp312-win_amd64.whl (50 kB)
-Using cached idna-3.7-py3-none-any.whl (66 kB)
-Using cached jsonschema_specifications-2023.12.1-py3-none-any.whl (18 kB)
-Using cached multidict-6.0.5-cp312-cp312-win_amd64.whl (27 kB)
-Using cached parsimonious-0.10.0-py3-none-any.whl (48 kB)
-Using cached pycryptodome-3.20.0-cp35-abi3-win_amd64.whl (1.8 MB)
-Using cached referencing-0.35.1-py3-none-any.whl (26 kB)
-Using cached rlp-4.0.1-py3-none-any.whl (20 kB)
-Using cached rpds_py-0.18.1-cp312-none-win_amd64.whl (209 kB)
-Using cached urllib3-2.2.1-py3-none-any.whl (121 kB)
-Using cached yarl-1.9.4-cp312-cp312-win_amd64.whl (76 kB)
-Downloading regex-2024.5.15-cp312-cp312-win_amd64.whl (268 kB)
-   ---------------------------------------- 268.5/268.5 kB 459.5 kB/s eta 0:00:00
-Using cached toolz-0.12.1-py3-none-any.whl (56 kB)
-Building wheels for collected packages: lru-dict
-  Building wheel for lru-dict (pyproject.toml) ... error
-  error: subprocess-exited-with-error
-
-  × Building wheel for lru-dict (pyproject.toml) did not run successfully.
-  │ exit code: 1
-  ╰─> [5 lines of output]
-      running bdist_wheel
-      running build
-      running build_ext
-      building 'lru' extension
-      error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
-      [end of output]
-
-  note: This error originates from a subprocess, and is likely not a problem with pip.
-  ERROR: Failed building wheel for lru-dict
-Failed to build lru-dict
-ERROR: Could not build wheels for lru-dict, which is required to install pyproject.toml-based projects
+Requirement already satisfied: web3 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (6.19.0)
+Requirement already satisfied: eth-typing!=4.2.0,>=3.0.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (4.2.3)
+Requirement already satisfied: eth-hash[pycryptodome]>=0.5.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (0.7.0)
+Requirement already satisfied: eth-abi>=4.0.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (5.1.0)
+Requirement already satisfied: lru-dict<1.3.0,>=1.1.6 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (1.2.0)
+Requirement already satisfied: typing-extensions>=4.0.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (4.12.0)
+Requirement already satisfied: websockets>=10.0.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (12.0)
+Requirement already satisfied: protobuf>=4.21.6 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (5.27.0)
+Requirement already satisfied: aiohttp>=3.7.4.post0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (3.9.5)
+Requirement already satisfied: hexbytes<0.4.0,>=0.1.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (0.3.1)
+Requirement already satisfied: jsonschema>=4.0.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (4.22.0)
+Requirement already satisfied: requests>=2.16.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (2.32.2)
+Requirement already satisfied: eth-utils>=2.1.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (4.1.1)
+Requirement already satisfied: pywin32>=223; platform_system == "Windows" in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (306)
+Requirement already satisfied: eth-account<0.13,>=0.8.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (0.12.3)
+Requirement already satisfied: pyunormalize>=15.0.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from web3) (15.1.0)
+Requirement already satisfied: pycryptodome<4,>=3.6.6; extra == "pycryptodome" in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-hash[pycryptodome]>=0.5.1->web3) (3.20.0)
+Requirement already satisfied: parsimonious<0.11.0,>=0.10.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-abi>=4.0.0->web3) (0.10.0)
+Requirement already satisfied: async-timeout<5.0,>=4.0; python_version < "3.11" in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from aiohttp>=3.7.4.post0->web3) (4.0.3)
+Requirement already satisfied: attrs>=17.3.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from aiohttp>=3.7.4.post0->web3) (23.2.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from aiohttp>=3.7.4.post0->web3) (1.9.4)
+Requirement already satisfied: frozenlist>=1.1.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from aiohttp>=3.7.4.post0->web3) (1.4.1)
+Requirement already satisfied: aiosignal>=1.1.2 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from aiohttp>=3.7.4.post0->web3) (1.3.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from aiohttp>=3.7.4.post0->web3) (6.0.5)
+Requirement already satisfied: referencing>=0.28.4 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from jsonschema>=4.0.0->web3) (0.35.1)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from jsonschema>=4.0.0->web3) (2023.12.1)
+Requirement already satisfied: rpds-py>=0.7.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from jsonschema>=4.0.0->web3) (0.18.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.16.0->web3) (3.3.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.16.0->web3) (2.2.1)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.16.0->web3) (2024.2.2)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.16.0->web3) (3.7)
+Requirement already satisfied: cytoolz>=0.10.1; implementation_name == "cpython" in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-utils>=2.1.0->web3) (0.12.3)
+Requirement already satisfied: eth-keys>=0.4.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-account<0.13,>=0.8.0->web3) (0.5.1)
+Requirement already satisfied: pydantic>=2.0.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-account<0.13,>=0.8.0->web3) (2.7.2)
+Requirement already satisfied: eth-keyfile>=0.6.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-account<0.13,>=0.8.0->web3) (0.8.1)
+Requirement already satisfied: bitarray>=2.4.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-account<0.13,>=0.8.0->web3) (2.9.2)
+Requirement already satisfied: eth-rlp>=2.1.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-account<0.13,>=0.8.0->web3) (2.1.0)
+Requirement already satisfied: rlp>=1.0.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-account<0.13,>=0.8.0->web3) (4.0.1)
+Requirement already satisfied: ckzg>=0.4.3 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from eth-account<0.13,>=0.8.0->web3) (1.0.2)
+Requirement already satisfied: regex>=2022.3.15 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from parsimonious<0.11.0,>=0.10.0->eth-abi>=4.0.0->web3) (2024.5.15)
+Requirement already satisfied: toolz>=0.8.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from cytoolz>=0.10.1; implementation_name == "cpython"->eth-utils>=2.1.0->web3) (0.12.1)
+Requirement already satisfied: annotated-types>=0.4.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from pydantic>=2.0.0->eth-account<0.13,>=0.8.0->web3) (0.7.0)
+Requirement already satisfied: pydantic-core==2.18.3 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from pydantic>=2.0.0->eth-account<0.13,>=0.8.0->web3) (2.18.3)
+WARNING: You are using pip version 20.2.3; however, version 24.0 is available.
+You should consider upgrading via the 'c:\users\minal\appdata\local\programs\python\python39\python.exe -m pip install --upgrade pip' command.
 
 C:\Users\Minal>pip install requests
-Collecting requests
-  Using cached requests-2.32.2-py3-none-any.whl.metadata (4.6 kB)
-Collecting charset-normalizer<4,>=2 (from requests)
-  Using cached charset_normalizer-3.3.2-cp312-cp312-win_amd64.whl.metadata (34 kB)
-Collecting idna<4,>=2.5 (from requests)
-  Using cached idna-3.7-py3-none-any.whl.metadata (9.9 kB)
-Collecting urllib3<3,>=1.21.1 (from requests)
-  Using cached urllib3-2.2.1-py3-none-any.whl.metadata (6.4 kB)
-Collecting certifi>=2017.4.17 (from requests)
-  Using cached certifi-2024.2.2-py3-none-any.whl.metadata (2.2 kB)
-Using cached requests-2.32.2-py3-none-any.whl (63 kB)
-Using cached certifi-2024.2.2-py3-none-any.whl (163 kB)
-Using cached charset_normalizer-3.3.2-cp312-cp312-win_amd64.whl (100 kB)
-Using cached idna-3.7-py3-none-any.whl (66 kB)
-Using cached urllib3-2.2.1-py3-none-any.whl (121 kB)
-Installing collected packages: urllib3, idna, charset-normalizer, certifi, requests
-Successfully installed certifi-2024.2.2 charset-normalizer-3.3.2 idna-3.7 requests-2.32.2 urllib3-2.2.1
+Requirement already satisfied: requests in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (2.32.2)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests) (3.7)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests) (2.2.1)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests) (2024.2.2)
+WARNING: You are using pip version 20.2.3; however, version 24.0 is available.
+You should consider upgrading via the 'c:\users\minal\appdata\local\programs\python\python39\python.exe -m pip install --upgrade pip' command.
 
 C:\Users\Minal>pip install ipfshttpclient
-Collecting ipfshttpclient
-  Using cached ipfshttpclient-0.7.0-py3-none-any.whl.metadata (10 kB)
-Collecting multiaddr>=0.0.7 (from ipfshttpclient)
-  Using cached multiaddr-0.0.9-py2.py3-none-any.whl.metadata (5.0 kB)
-Requirement already satisfied: requests>=2.11 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from ipfshttpclient) (2.32.2)
-Collecting varint (from multiaddr>=0.0.7->ipfshttpclient)
-  Using cached varint-1.0.2-py3-none-any.whl
-Collecting six (from multiaddr>=0.0.7->ipfshttpclient)
-  Using cached six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
-Collecting base58 (from multiaddr>=0.0.7->ipfshttpclient)
-  Using cached base58-2.1.1-py3-none-any.whl.metadata (3.1 kB)
-Collecting netaddr (from multiaddr>=0.0.7->ipfshttpclient)
-  Using cached netaddr-1.2.1-py3-none-any.whl.metadata (5.0 kB)
-Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from requests>=2.11->ipfshttpclient) (3.3.2)
-Requirement already satisfied: idna<4,>=2.5 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from requests>=2.11->ipfshttpclient) (3.7)
-Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from requests>=2.11->ipfshttpclient) (2.2.1)
-Requirement already satisfied: certifi>=2017.4.17 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from requests>=2.11->ipfshttpclient) (2024.2.2)
-Using cached ipfshttpclient-0.7.0-py3-none-any.whl (82 kB)
-Using cached multiaddr-0.0.9-py2.py3-none-any.whl (16 kB)
-Using cached base58-2.1.1-py3-none-any.whl (5.6 kB)
-Using cached netaddr-1.2.1-py3-none-any.whl (2.3 MB)
-Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
-Installing collected packages: varint, six, netaddr, base58, multiaddr, ipfshttpclient
-Successfully installed base58-2.1.1 ipfshttpclient-0.7.0 multiaddr-0.0.9 netaddr-1.2.1 six-1.16.0 varint-1.0.2
+Requirement already satisfied: ipfshttpclient in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (0.7.0)
+Requirement already satisfied: multiaddr>=0.0.7 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from ipfshttpclient) (0.0.9)
+Requirement already satisfied: requests>=2.11 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from ipfshttpclient) (2.32.2)
+Requirement already satisfied: base58 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from multiaddr>=0.0.7->ipfshttpclient) (2.1.1)
+Requirement already satisfied: six in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from multiaddr>=0.0.7->ipfshttpclient) (1.16.0)
+Requirement already satisfied: varint in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from multiaddr>=0.0.7->ipfshttpclient) (1.0.2)
+Requirement already satisfied: netaddr in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from multiaddr>=0.0.7->ipfshttpclient) (1.3.0)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.11->ipfshttpclient) (2024.2.2)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.11->ipfshttpclient) (3.7)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.11->ipfshttpclient) (3.3.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.11->ipfshttpclient) (2.2.1)
+WARNING: You are using pip version 20.2.3; however, version 24.0 is available.
+You should consider upgrading via the 'c:\users\minal\appdata\local\programs\python\python39\python.exe -m pip install --upgrade pip' command.
 
-C:\Users\Minal>pip install "web3[tester]"
-Collecting web3[tester]
-  Using cached web3-6.19.0-py3-none-any.whl.metadata (4.5 kB)
-Collecting aiohttp>=3.7.4.post0 (from web3[tester])
-  Using cached aiohttp-3.9.5-cp312-cp312-win_amd64.whl.metadata (7.7 kB)
-Collecting eth-abi>=4.0.0 (from web3[tester])
-  Using cached eth_abi-5.1.0-py3-none-any.whl.metadata (5.1 kB)
-Collecting eth-account<0.13,>=0.8.0 (from web3[tester])
-  Using cached eth_account-0.12.3-py3-none-any.whl.metadata (5.1 kB)
-Collecting eth-hash>=0.5.1 (from eth-hash[pycryptodome]>=0.5.1->web3[tester])
-  Using cached eth_hash-0.7.0-py3-none-any.whl.metadata (5.4 kB)
-Collecting eth-typing!=4.2.0,>=3.0.0 (from web3[tester])
-  Using cached eth_typing-4.2.3-py3-none-any.whl.metadata (5.0 kB)
-Collecting eth-utils>=2.1.0 (from web3[tester])
-  Using cached eth_utils-4.1.1-py3-none-any.whl.metadata (5.4 kB)
-Collecting hexbytes<0.4.0,>=0.1.0 (from web3[tester])
-  Using cached hexbytes-0.3.1-py3-none-any.whl.metadata (5.5 kB)
-Collecting jsonschema>=4.0.0 (from web3[tester])
-  Using cached jsonschema-4.22.0-py3-none-any.whl.metadata (8.2 kB)
-Collecting lru-dict<1.3.0,>=1.1.6 (from web3[tester])
-  Using cached lru-dict-1.2.0.tar.gz (10 kB)
-  Installing build dependencies ... done
-  Getting requirements to build wheel ... done
-  Installing backend dependencies ... done
-  Preparing metadata (pyproject.toml) ... done
-Collecting protobuf>=4.21.6 (from web3[tester])
-  Using cached protobuf-5.27.0-cp310-abi3-win_amd64.whl.metadata (592 bytes)
-Requirement already satisfied: requests>=2.16.0 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from web3[tester]) (2.32.2)
-Collecting typing-extensions>=4.0.1 (from web3[tester])
-  Using cached typing_extensions-4.12.0-py3-none-any.whl.metadata (3.0 kB)
-Collecting websockets>=10.0.0 (from web3[tester])
-  Using cached websockets-12.0-cp312-cp312-win_amd64.whl.metadata (6.8 kB)
-Collecting pyunormalize>=15.0.0 (from web3[tester])
-  Using cached pyunormalize-15.1.0-py3-none-any.whl
-Collecting pywin32>=223 (from web3[tester])
-  Using cached pywin32-306-cp312-cp312-win_amd64.whl.metadata (6.5 kB)
-Collecting py-geth>=3.14.0 (from web3[tester])
-  Using cached py_geth-4.4.0-py3-none-any.whl.metadata (9.5 kB)
-Collecting eth-tester<0.12.0b1,>=0.11.0b1 (from eth-tester[py-evm]<0.12.0b1,>=0.11.0b1; python_version > "3.7" and extra == "tester"->web3[tester])
-  Using cached eth_tester-0.11.0b2-py3-none-any.whl.metadata (37 kB)
-Collecting aiosignal>=1.1.2 (from aiohttp>=3.7.4.post0->web3[tester])
-  Using cached aiosignal-1.3.1-py3-none-any.whl.metadata (4.0 kB)
-Collecting attrs>=17.3.0 (from aiohttp>=3.7.4.post0->web3[tester])
-  Using cached attrs-23.2.0-py3-none-any.whl.metadata (9.5 kB)
-Collecting frozenlist>=1.1.1 (from aiohttp>=3.7.4.post0->web3[tester])
-  Using cached frozenlist-1.4.1-cp312-cp312-win_amd64.whl.metadata (12 kB)
-Collecting multidict<7.0,>=4.5 (from aiohttp>=3.7.4.post0->web3[tester])
-  Using cached multidict-6.0.5-cp312-cp312-win_amd64.whl.metadata (4.3 kB)
-Collecting yarl<2.0,>=1.0 (from aiohttp>=3.7.4.post0->web3[tester])
-  Using cached yarl-1.9.4-cp312-cp312-win_amd64.whl.metadata (32 kB)
-Collecting parsimonious<0.11.0,>=0.10.0 (from eth-abi>=4.0.0->web3[tester])
-  Using cached parsimonious-0.10.0-py3-none-any.whl.metadata (25 kB)
-Collecting bitarray>=2.4.0 (from eth-account<0.13,>=0.8.0->web3[tester])
-  Using cached bitarray-2.9.2-cp312-cp312-win_amd64.whl.metadata (35 kB)
-Collecting eth-keyfile>=0.6.0 (from eth-account<0.13,>=0.8.0->web3[tester])
-  Using cached eth_keyfile-0.8.1-py3-none-any.whl.metadata (8.5 kB)
-Collecting eth-keys>=0.4.0 (from eth-account<0.13,>=0.8.0->web3[tester])
-  Using cached eth_keys-0.5.1-py3-none-any.whl.metadata (13 kB)
-Collecting eth-rlp>=2.1.0 (from eth-account<0.13,>=0.8.0->web3[tester])
-  Using cached eth_rlp-2.1.0-py3-none-any.whl.metadata (4.6 kB)
-INFO: pip is looking at multiple versions of eth-account to determine which version is compatible with other requirements. This could take a while.
-Collecting eth-account<0.13,>=0.8.0 (from web3[tester])
-  Using cached eth_account-0.12.2-py3-none-any.whl.metadata (5.1 kB)
-  Using cached eth_account-0.12.1-py3-none-any.whl.metadata (5.1 kB)
-  Using cached eth_account-0.12.0-py3-none-any.whl.metadata (5.1 kB)
-  Using cached eth_account-0.11.2-py3-none-any.whl.metadata (5.1 kB)
-Collecting rlp>=1.0.0 (from eth-account<0.13,>=0.8.0->web3[tester])
-  Using cached rlp-4.0.1-py3-none-any.whl.metadata (4.6 kB)
-Collecting ckzg>=0.4.3 (from eth-account<0.13,>=0.8.0->web3[tester])
-  Using cached ckzg-1.0.2-cp312-cp312-win_amd64.whl.metadata (718 bytes)
-Collecting pycryptodome<4,>=3.6.6 (from eth-hash[pycryptodome]>=0.5.1->web3[tester])
-  Using cached pycryptodome-3.20.0-cp35-abi3-win_amd64.whl.metadata (3.4 kB)
-Collecting semantic-version>=2.6.0 (from eth-tester<0.12.0b1,>=0.11.0b1->eth-tester[py-evm]<0.12.0b1,>=0.11.0b1; python_version > "3.7" and extra == "tester"->web3[tester])
-  Using cached semantic_version-2.10.0-py2.py3-none-any.whl.metadata (9.7 kB)
-Collecting py-evm<0.11.0b0,>=0.10.0b0 (from eth-tester[py-evm]<0.12.0b1,>=0.11.0b1; python_version > "3.7" and extra == "tester"->web3[tester])
-  Using cached py_evm-0.10.1b1-py3-none-any.whl.metadata (7.5 kB)
-Collecting cytoolz>=0.10.1 (from eth-utils>=2.1.0->web3[tester])
-  Using cached cytoolz-0.12.3-cp312-cp312-win_amd64.whl.metadata (4.7 kB)
-Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=4.0.0->web3[tester])
-  Using cached jsonschema_specifications-2023.12.1-py3-none-any.whl.metadata (3.0 kB)
-Collecting referencing>=0.28.4 (from jsonschema>=4.0.0->web3[tester])
-  Using cached referencing-0.35.1-py3-none-any.whl.metadata (2.8 kB)
-Collecting rpds-py>=0.7.1 (from jsonschema>=4.0.0->web3[tester])
-  Using cached rpds_py-0.18.1-cp312-none-win_amd64.whl.metadata (4.2 kB)
-Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from requests>=2.16.0->web3[tester]) (3.3.2)
-Requirement already satisfied: idna<4,>=2.5 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from requests>=2.16.0->web3[tester]) (3.7)
-Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from requests>=2.16.0->web3[tester]) (2.2.1)
-Requirement already satisfied: certifi>=2017.4.17 in c:\users\minal\appdata\local\programs\python\python312\lib\site-packages (from requests>=2.16.0->web3[tester]) (2024.2.2)
-Collecting toolz>=0.8.0 (from cytoolz>=0.10.1->eth-utils>=2.1.0->web3[tester])
-  Using cached toolz-0.12.1-py3-none-any.whl.metadata (5.1 kB)
-Collecting safe-pysha3>=1.0.0 (from eth-hash>=0.5.1->eth-hash[pycryptodome]>=0.5.1->web3[tester])
-  Using cached safe-pysha3-1.0.4.tar.gz (827 kB)
-  Installing build dependencies ... done
-  Getting requirements to build wheel ... done
-  Installing backend dependencies ... done
-  Preparing metadata (pyproject.toml) ... done
-INFO: pip is looking at multiple versions of eth-rlp to determine which version is compatible with other requirements. This could take a while.
-Collecting eth-rlp>=0.3.0 (from eth-account<0.13,>=0.8.0->web3[tester])
-  Using cached eth_rlp-2.0.0-py3-none-any.whl.metadata (4.6 kB)
-  Using cached eth_rlp-1.0.1-py3-none-any.whl.metadata (4.5 kB)
-Collecting regex>=2022.3.15 (from parsimonious<0.11.0,>=0.10.0->eth-abi>=4.0.0->web3[tester])
-  Using cached regex-2024.5.15-cp312-cp312-win_amd64.whl.metadata (41 kB)
-Collecting cached-property>=1.5.1 (from py-evm<0.11.0b0,>=0.10.0b0->eth-tester[py-evm]<0.12.0b1,>=0.11.0b1; python_version > "3.7" and extra == "tester"->web3[tester])
-  Using cached cached_property-1.5.2-py2.py3-none-any.whl.metadata (11 kB)
-Collecting eth-bloom>=1.0.3 (from py-evm<0.11.0b0,>=0.10.0b0->eth-tester[py-evm]<0.12.0b1,>=0.11.0b1; python_version > "3.7" and extra == "tester"->web3[tester])
-  Using cached eth_bloom-3.0.1-py3-none-any.whl.metadata (8.3 kB)
-Collecting py-ecc>=1.4.7 (from py-evm<0.11.0b0,>=0.10.0b0->eth-tester[py-evm]<0.12.0b1,>=0.11.0b1; python_version > "3.7" and extra == "tester"->web3[tester])
-  Using cached py_ecc-7.0.1-py3-none-any.whl.metadata (6.3 kB)
-Collecting trie>=2.0.0 (from py-evm<0.11.0b0,>=0.10.0b0->eth-tester[py-evm]<0.12.0b1,>=0.11.0b1; python_version > "3.7" and extra == "tester"->web3[tester])
-  Using cached trie-3.0.1-py3-none-any.whl.metadata (19 kB)
-Collecting sortedcontainers>=2.1.0 (from trie>=2.0.0->py-evm<0.11.0b0,>=0.10.0b0->eth-tester[py-evm]<0.12.0b1,>=0.11.0b1; python_version > "3.7" and extra == "tester"->web3[tester])
-  Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
-Using cached aiohttp-3.9.5-cp312-cp312-win_amd64.whl (369 kB)
-Using cached eth_abi-5.1.0-py3-none-any.whl (29 kB)
-Using cached eth_account-0.11.2-py3-none-any.whl (355 kB)
-Using cached eth_hash-0.7.0-py3-none-any.whl (8.7 kB)
-Using cached eth_tester-0.11.0b2-py3-none-any.whl (75 kB)
-Using cached eth_typing-4.2.3-py3-none-any.whl (18 kB)
-Using cached eth_utils-4.1.1-py3-none-any.whl (96 kB)
-Using cached hexbytes-0.3.1-py3-none-any.whl (5.9 kB)
-Using cached jsonschema-4.22.0-py3-none-any.whl (88 kB)
-Using cached protobuf-5.27.0-cp310-abi3-win_amd64.whl (426 kB)
-Using cached py_geth-4.4.0-py3-none-any.whl (24 kB)
-Using cached pywin32-306-cp312-cp312-win_amd64.whl (9.2 MB)
-Using cached typing_extensions-4.12.0-py3-none-any.whl (37 kB)
-Using cached websockets-12.0-cp312-cp312-win_amd64.whl (124 kB)
-Using cached web3-6.19.0-py3-none-any.whl (1.6 MB)
-Using cached aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
-Using cached attrs-23.2.0-py3-none-any.whl (60 kB)
-Using cached bitarray-2.9.2-cp312-cp312-win_amd64.whl (126 kB)
-Using cached ckzg-1.0.2-cp312-cp312-win_amd64.whl (69 kB)
-Using cached cytoolz-0.12.3-cp312-cp312-win_amd64.whl (363 kB)
-Using cached eth_keyfile-0.8.1-py3-none-any.whl (7.5 kB)
-Using cached eth_keys-0.5.1-py3-none-any.whl (21 kB)
-Using cached eth_rlp-1.0.1-py3-none-any.whl (4.9 kB)
-Using cached frozenlist-1.4.1-cp312-cp312-win_amd64.whl (50 kB)
-Using cached jsonschema_specifications-2023.12.1-py3-none-any.whl (18 kB)
-Using cached multidict-6.0.5-cp312-cp312-win_amd64.whl (27 kB)
-Using cached parsimonious-0.10.0-py3-none-any.whl (48 kB)
-Using cached py_evm-0.10.1b1-py3-none-any.whl (551 kB)
-Using cached pycryptodome-3.20.0-cp35-abi3-win_amd64.whl (1.8 MB)
-Using cached referencing-0.35.1-py3-none-any.whl (26 kB)
-Using cached rlp-4.0.1-py3-none-any.whl (20 kB)
-Using cached rpds_py-0.18.1-cp312-none-win_amd64.whl (209 kB)
-Using cached semantic_version-2.10.0-py2.py3-none-any.whl (15 kB)
-Using cached yarl-1.9.4-cp312-cp312-win_amd64.whl (76 kB)
-Using cached cached_property-1.5.2-py2.py3-none-any.whl (7.6 kB)
-Using cached eth_bloom-3.0.1-py3-none-any.whl (5.7 kB)
-Using cached py_ecc-7.0.1-py3-none-any.whl (43 kB)
-Using cached regex-2024.5.15-cp312-cp312-win_amd64.whl (268 kB)
-Using cached toolz-0.12.1-py3-none-any.whl (56 kB)
-Using cached trie-3.0.1-py3-none-any.whl (38 kB)
-Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
-Building wheels for collected packages: lru-dict, safe-pysha3
-  Building wheel for lru-dict (pyproject.toml) ... error
-  error: subprocess-exited-with-error
+Microsoft Windows [Version 10.0.19045.4412]
+(c) Microsoft Corporation. All rights reserved.
 
-  × Building wheel for lru-dict (pyproject.toml) did not run successfully.
-  │ exit code: 1
-  ╰─> [5 lines of output]
-      running bdist_wheel
-      running build
-      running build_ext
-      building 'lru' extension
-      error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
-      [end of output]
+C:\WINDOWS\system32>pip install tk
+Collecting tk
+  Downloading tk-0.1.0-py3-none-any.whl (3.9 kB)
+Installing collected packages: tk
+Successfully installed tk-0.1.0
+WARNING: You are using pip version 20.2.3; however, version 24.0 is available.
+You should consider upgrading via the 'c:\users\minal\appdata\local\programs\python\python39\python.exe -m pip install --upgrade pip' command.
 
-  note: This error originates from a subprocess, and is likely not a problem with pip.
-  ERROR: Failed building wheel for lru-dict
-  Building wheel for safe-pysha3 (pyproject.toml) ... error
-  error: subprocess-exited-with-error
-
-  × Building wheel for safe-pysha3 (pyproject.toml) did not run successfully.
-  │ exit code: 1
-  ╰─> [9 lines of output]
-      running bdist_wheel
-      running build
-      running build_py
-      creating build
-      creating build\lib.win-amd64-cpython-312
-      copying sha3.py -> build\lib.win-amd64-cpython-312
-      running build_ext
-      building '_pysha3' extension
-      error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
-      [end of output]
-
-  note: This error originates from a subprocess, and is likely not a problem with pip.
-  ERROR: Failed building wheel for safe-pysha3
-Failed to build lru-dict safe-pysha3
-ERROR: Could not build wheels for lru-dict, safe-pysha3, which is required to install pyproject.toml-based projects
-
-C:\Users\Minal>pip install wheel
-Collecting wheel
-  Using cached wheel-0.43.0-py3-none-any.whl.metadata (2.2 kB)
-Using cached wheel-0.43.0-py3-none-any.whl (65 kB)
-Installing collected packages: wheel
-Successfully installed wheel-0.43.0
-
-C:\Users\Minal>pip install --upgrade setuptools
-Collecting setuptools
-  Using cached setuptools-70.0.0-py3-none-any.whl.metadata (5.9 kB)
-Using cached setuptools-70.0.0-py3-none-any.whl (863 kB)
-Installing collected packages: setuptools
-Successfully installed setuptools-70.0.0
-
-C:\Users\Minal>
+C:\WINDOWS\system32>
