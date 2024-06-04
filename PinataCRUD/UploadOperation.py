@@ -11,7 +11,7 @@ def upload_to_ipfs(file_path):
     else:
         return None
 
-##ipfs_hash = upload_to_ipfs("C:\\Users\\Minal\\Desktop\\CredLocker\\README.md")
-##print("File uploaded to IPFS with hash:", ipfs_hash)
+ipfs_hash = upload_to_ipfs("C:\\Users\\Minal\\Desktop\\CredLocker\\README.md")
+print("File uploaded to IPFS with hash:", ipfs_hash)
 
 #QmYVAAfnqtEMqBqRggma24kSFY51CZM61JrzYPz9SJVL5m
