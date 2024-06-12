@@ -50,7 +50,6 @@ def choose_folder():
 
 def submit():
     try:
-        # Validate fields
         first_name = e1.get().strip()
         middle_name = e2.get().strip()
         last_name = e3.get().strip()
@@ -72,6 +71,9 @@ def submit():
         type_of_credential = e12.get().strip()
         file_path = file_entry.get().strip()
         folder_path = folder_entry.get().strip()
+        account_address = entry_account_address.get().strip()
+        uid = entry_uid.get().strip()
+        account_private_key = entry_account_private_key.get().strip()
 
         if not first_name.isalpha():
             raise ValueError("First Name must contain only letters.")
@@ -136,7 +138,18 @@ def submit():
         if file_path and folder_path:
             raise ValueError("You cannot choose both a file and a folder. Please select only one.")
 
-        # Collect data
+        if not account_address:
+            raise ValueError("Account Address is required.")
+        
+        if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).+$', uid):
+            raise ValueError("UID must contain at least one lower case letter, one upper case letter, one digit, and one special character.")
+        
+        if len(uid) < 10:
+            raise ValueError("UID must be more than 10 characters long.")
+        
+        if not account_private_key:
+            raise ValueError("Account Private Key is required.")
+
         student_data = {
             "First Name": first_name.lower(),
             "Middle Name": middle_name.lower(),
@@ -156,16 +169,38 @@ def submit():
             "Date of Issuance": date_of_issuance,
             "Type of Credential": type_of_credential.lower(),
             "File Path": file_path,
-            "Folder Path": folder_path
+            "Folder Path": folder_path,
+            "Account Address": account_address,
+            "UID": uid,
+            "Account Private Key": account_private_key,
+            "Date Time": str(datetime.now())
         }
-        print(student_data)
-        messagebox.showinfo("Success", "Student data submitted successfully!")
-        clear_form()
+        
+        if not con.w3.is_address(account_address):
+            messagebox.showerror("Error", "Invalid Account Address!!")
+            return None
 
-    except ValueError as ve:
-        messagebox.showerror("Input Error", str(ve))
+        account = Account.from_key(account_private_key)
+        address = account.address
+    
+        if not address.lower() == account_address.lower():
+            messagebox.showerror("Error", "Private key does not belongs to provided account address")
+            return None
+        
+        thres = bal.get_threshold_ether()
+        acc_bal = bal.get_balance(account_address)
+        
+        if thres >= acc_bal:
+            messagebox.showinfo("Failed", "Your Account balance is " + str(acc_bal) + " which is not more than minimum required balance which is " + str(thres))
+        else:
+            messagebox.showinfo("Success", "Your Account balance is " + str(acc_bal) + " which is greater than minimum required balance which is " + str(thres))
+            messagebox.showinfo("Success", "Student data submitted successfully!")
+            MergeAdmin.save_to_file(institution_data, account_address)
+
+    except ValueError as e:
+        messagebox.showerror("Error", str(e))
     except Exception as e:
-        messagebox.showerror("Error", "Please ensure all fields are filled out correctly.")
+        messagebox.showerror("Error", f"An unexpected error occurred: {str(e)}")
 
 def clear_form():
     e1.delete(0, END)
@@ -194,6 +229,9 @@ def clear_form():
     folder_entry.config(state=NORMAL)
     folder_entry.delete(0, END)
     folder_entry.config(state="readonly")
+    entry_account_address.delete(0, END)
+    entry_uid.delete(0, END)
+    entry_account_private_key.delete(0, END)
 
 parent = Tk()
 parent.title("Student Data Entry")
@@ -266,8 +304,8 @@ ttk.Label(label_frame_1, text="Institution Accreditation Status").grid(row=9, co
 e7 = ttk.Entry(label_frame_1, font=("Helvetica", 12))
 e7.grid(row=9, column=1, padx=10, pady=10, sticky=W)
 
-ttk.Label(label_frame_2, text="Institution Email 1").grid(row=10, column=0, padx=10, pady=10, sticky=E)
-e8_1 = ttk.Entry(label_frame_2, font=("Helvetica", 12))
+ttk.Label(label_frame_1, text="Institution Email 1").grid(row=10, column=0, padx=10, pady=10, sticky=E)
+e8_1 = ttk.Entry(label_frame_1, font=("Helvetica", 12))
 e8_1.grid(row=10, column=1, padx=10, pady=10, sticky=W)
 
 ttk.Label(label_frame_2, text="Institution Email 2").grid(row=11, column=0, padx=10, pady=10, sticky=E)
@@ -311,7 +349,22 @@ folder_button.grid(row=0, column=0, padx=5)
 folder_entry = ttk.Entry(folder_frame, font=("Helvetica", 12), state="readonly")
 folder_entry.grid(row=0, column=1, padx=5)
 
+ttk.Label(label_frame_2, text="Account Address:").grid(row=19, column=0, padx=10, pady=10, sticky=E)
+entry_account_address = ttk.Entry(label_frame_2, font=("Helvetica", 12))
+entry_account_address.grid(row=19, column=1, padx=10, pady=10, sticky=W)
+
+ttk.Label(label_frame_2, text="UID:").grid(row=20, column=0, padx=10, pady=10, sticky=E)
+entry_uid = ttk.Entry(label_frame_2, show="*", font=("Helvetica", 12))
+entry_uid.grid(row=20, column=1, padx=10, pady=10, sticky=W)
+
+ttk.Label(label_frame_2, text="Account Private Key:").grid(row=21, column=0, padx=10, pady=10, sticky=E)
+entry_account_private_key = ttk.Entry(label_frame_2, show="*", font=("Helvetica", 12))
+entry_account_private_key.grid(row=21, column=1, padx=10, pady=10, sticky=W)
+
+clear_button = ttk.Button(parent, text="Clear", command=clear_form)
+clear_button.grid(row=19, column=0, padx=10, pady=10)
+
 submit_button = ttk.Button(parent, text="Submit", command=submit)
-submit_button.grid(row=19, column=0, columnspan=2, pady=20)
+submit_button.grid(row=19, column=1, padx=20, pady=10)
 
 parent.mainloop()

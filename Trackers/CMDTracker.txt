@@ -86,4 +86,122 @@ Successfully installed tk-0.1.0
 WARNING: You are using pip version 20.2.3; however, version 24.0 is available.
 You should consider upgrading via the 'c:\users\minal\appdata\local\programs\python\python39\python.exe -m pip install --upgrade pip' command.
 
-C:\WINDOWS\system32>
+------------------------------------------------------------------------------------------------------------------
+
+Microsoft Windows [Version 10.0.19045.4412]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Minal>pip install python-firebase
+Collecting python-firebase
+  Downloading python-firebase-1.2.tar.gz (10 kB)
+Requirement already satisfied: requests>=1.1.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from python-firebase) (2.32.2)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=1.1.0->python-firebase) (3.7)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=1.1.0->python-firebase) (3.3.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=1.1.0->python-firebase) (2.2.1)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=1.1.0->python-firebase) (2024.2.2)
+Using legacy 'setup.py install' for python-firebase, since package 'wheel' is not installed.
+Installing collected packages: python-firebase
+    Running setup.py install for python-firebase ... done
+Successfully installed python-firebase-1.2
+WARNING: You are using pip version 20.2.3; however, version 24.0 is available.
+You should consider upgrading via the 'c:\users\minal\appdata\local\programs\python\python39\python.exe -m pip install --upgrade pip' command.
+
+Microsoft Windows [Version 10.0.19045.4412]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Minal>pip install firebase-admin
+Collecting firebase-admin
+  Downloading firebase_admin-6.5.0-py3-none-any.whl (126 kB)
+     |████████████████████████████████| 126 kB 1.1 MB/s
+Collecting cachecontrol>=0.12.6
+  Downloading cachecontrol-0.14.0-py3-none-any.whl (22 kB)
+Collecting google-api-python-client>=1.7.8
+  Downloading google_api_python_client-2.132.0-py2.py3-none-any.whl (11.7 MB)
+     |████████████████████████████████| 11.7 MB 1.7 MB/s
+Collecting google-api-core[grpc]<3.0.0dev,>=1.22.1; platform_python_implementation != "PyPy"
+  Downloading google_api_core-2.19.0-py3-none-any.whl (139 kB)
+     |████████████████████████████████| 139 kB 3.3 MB/s
+Collecting google-cloud-firestore>=2.9.1; platform_python_implementation != "PyPy"
+  Downloading google_cloud_firestore-2.16.0-py2.py3-none-any.whl (317 kB)
+     |████████████████████████████████| 317 kB 6.8 MB/s
+Collecting google-cloud-storage>=1.37.1
+  Downloading google_cloud_storage-2.16.0-py2.py3-none-any.whl (125 kB)
+     |████████████████████████████████| 125 kB 3.2 MB/s
+Collecting pyjwt[crypto]>=2.5.0
+  Downloading PyJWT-2.8.0-py3-none-any.whl (22 kB)
+Requirement already satisfied: requests>=2.16.0 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from cachecontrol>=0.12.6->firebase-admin) (2.32.2)
+Collecting msgpack<2.0.0,>=0.5.2
+  Downloading msgpack-1.0.8-cp39-cp39-win_amd64.whl (75 kB)
+     |████████████████████████████████| 75 kB 523 kB/s
+Collecting google-auth-httplib2<1.0.0,>=0.2.0
+  Downloading google_auth_httplib2-0.2.0-py2.py3-none-any.whl (9.3 kB)
+Collecting httplib2<1.dev0,>=0.19.0
+  Downloading httplib2-0.22.0-py3-none-any.whl (96 kB)
+     |████████████████████████████████| 96 kB 671 kB/s
+Collecting uritemplate<5,>=3.0.1
+  Downloading uritemplate-4.1.1-py2.py3-none-any.whl (10 kB)
+Collecting google-auth!=2.24.0,!=2.25.0,<3.0.0.dev0,>=1.32.0
+  Downloading google_auth-2.30.0-py2.py3-none-any.whl (193 kB)
+     |████████████████████████████████| 193 kB 3.2 MB/s
+Collecting proto-plus<2.0.0dev,>=1.22.3
+  Downloading proto_plus-1.23.0-py3-none-any.whl (48 kB)
+     |████████████████████████████████| 48 kB 899 kB/s
+Collecting googleapis-common-protos<2.0.dev0,>=1.56.2
+  Downloading googleapis_common_protos-1.63.1-py2.py3-none-any.whl (229 kB)
+     |████████████████████████████████| 229 kB 3.3 MB/s
+Collecting protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0.dev0,>=3.19.5
+  Downloading protobuf-4.25.3-cp39-cp39-win_amd64.whl (413 kB)
+     |████████████████████████████████| 413 kB 2.2 MB/s
+Collecting grpcio-status<2.0.dev0,>=1.33.2; extra == "grpc"
+  Downloading grpcio_status-1.64.1-py3-none-any.whl (14 kB)
+Collecting grpcio<2.0dev,>=1.33.2; extra == "grpc"
+  Downloading grpcio-1.64.1-cp39-cp39-win_amd64.whl (4.1 MB)
+     |████████████████████████████████| 4.1 MB ...
+Collecting google-cloud-core<3.0.0dev,>=1.4.1
+  Downloading google_cloud_core-2.4.1-py2.py3-none-any.whl (29 kB)
+Collecting google-resumable-media>=2.6.0
+  Downloading google_resumable_media-2.7.0-py2.py3-none-any.whl (80 kB)
+     |████████████████████████████████| 80 kB 943 kB/s
+Collecting google-crc32c<2.0dev,>=1.0
+  Downloading google_crc32c-1.5.0-cp39-cp39-win_amd64.whl (27 kB)
+Collecting cryptography>=3.4.0; extra == "crypto"
+  Downloading cryptography-42.0.8-cp39-abi3-win_amd64.whl (2.9 MB)
+     |████████████████████████████████| 2.9 MB 6.8 MB/s
+Requirement already satisfied: idna<4,>=2.5 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.16.0->cachecontrol>=0.12.6->firebase-admin) (3.7)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.16.0->cachecontrol>=0.12.6->firebase-admin) (2.2.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.16.0->cachecontrol>=0.12.6->firebase-admin) (3.3.2)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\minal\appdata\local\programs\python\python39\lib\site-packages (from requests>=2.16.0->cachecontrol>=0.12.6->firebase-admin) (2024.2.2)
+Collecting pyparsing!=3.0.0,!=3.0.1,!=3.0.2,!=3.0.3,<4,>=2.4.2; python_version > "3.0"
+  Downloading pyparsing-3.1.2-py3-none-any.whl (103 kB)
+     |████████████████████████████████| 103 kB 6.8 MB/s
+Collecting rsa<5,>=3.1.4
+  Downloading rsa-4.9-py3-none-any.whl (34 kB)
+Collecting pyasn1-modules>=0.2.1
+  Downloading pyasn1_modules-0.4.0-py3-none-any.whl (181 kB)
+     |████████████████████████████████| 181 kB 6.4 MB/s
+Collecting cachetools<6.0,>=2.0.0
+  Downloading cachetools-5.3.3-py3-none-any.whl (9.3 kB)
+Collecting cffi>=1.12; platform_python_implementation != "PyPy"
+  Downloading cffi-1.16.0-cp39-cp39-win_amd64.whl (181 kB)
+     |████████████████████████████████| 181 kB 3.3 MB/s
+Collecting pyasn1>=0.1.3
+  Downloading pyasn1-0.6.0-py2.py3-none-any.whl (85 kB)
+     |████████████████████████████████| 85 kB 587 kB/s
+Collecting pycparser
+  Downloading pycparser-2.22-py3-none-any.whl (117 kB)
+     |████████████████████████████████| 117 kB 3.3 MB/s
+Installing collected packages: msgpack, cachecontrol, pyparsing, httplib2, pyasn1, rsa, pyasn1-modules, cachetools, google-auth, google-auth-httplib2, protobuf, proto-plus, googleapis-common-protos, grpcio, grpcio-status, google-api-core, uritemplate, google-api-python-client, google-cloud-core, google-cloud-firestore, google-crc32c, google-resumable-media, google-cloud-storage, pycparser, cffi, cryptography, pyjwt, firebase-admin
+  Attempting uninstall: protobuf
+    Found existing installation: protobuf 5.27.0
+    Uninstalling protobuf-5.27.0:
+      Successfully uninstalled protobuf-5.27.0
+ERROR: After October 2020 you may experience errors when installing or updating packages. This is because pip will change the way that it resolves dependency conflicts.
+
+We recommend you use --use-feature=2020-resolver to test your packages with the new resolver before it becomes the default.
+
+grpcio-status 1.64.1 requires protobuf<6.0dev,>=5.26.1, but you'll have protobuf 4.25.3 which is incompatible.
+Successfully installed cachecontrol-0.14.0 cachetools-5.3.3 cffi-1.16.0 cryptography-42.0.8 firebase-admin-6.5.0 google-api-core-2.19.0 google-api-python-client-2.132.0 google-auth-2.30.0 google-auth-httplib2-0.2.0 google-cloud-core-2.4.1 google-cloud-firestore-2.16.0 google-cloud-storage-2.16.0 google-crc32c-1.5.0 google-resumable-media-2.7.0 googleapis-common-protos-1.63.1 grpcio-1.64.1 grpcio-status-1.64.1 httplib2-0.22.0 msgpack-1.0.8 proto-plus-1.23.0 protobuf-4.25.3 pyasn1-0.6.0 pyasn1-modules-0.4.0 pycparser-2.22 pyjwt-2.8.0 pyparsing-3.1.2 rsa-4.9 uritemplate-4.1.1
+WARNING: You are using pip version 20.2.3; however, version 24.0 is available.
+You should consider upgrading via the 'c:\users\minal\appdata\local\programs\python\python39\python.exe -m pip install --upgrade pip' command.
+
+C:\Users\Minal>

@@ -17,8 +17,7 @@ def submit_form():
         email2 = entry_email2.get().strip()
         account_address = entry_account_address.get().strip()
         uid = entry_uid.get().strip()
-        account_private_key = entry_account_private_key.get().strip()  # New field
-        file_name = entry_file_name.get().strip()
+        account_private_key = entry_account_private_key.get().strip()
 
         if not institution_name:
             raise ValueError("Institution Name is required.")
@@ -42,24 +41,21 @@ def submit_form():
             raise ValueError("UID must contain at least one lower case letter, one upper case letter, one digit, and one special character.")
         if len(uid) < 10:
             raise ValueError("UID must be more than 10 characters long.")
-        if not file_name:
-            raise ValueError("File Name is required.")
         if not account_private_key:
             raise ValueError("Account Private Key is required.")
 
-        institution_data = (
-            f"Institution Name: {institution_name}\n"
-            f"Address: {address}\n"
-            f"Contact 1: {contact1}\n"
-            f"Contact 2: {contact2}\n"
-            f"Email 1: {email1}\n"
-            f"Email 2: {email2}\n"
-            f"Account Address: {account_address}\n"
-            f"UID: {uid}\n"
-            f"Account Private Key: {account_private_key}\n"
-            f"File Name: {file_name}\n"
-            "Date Time: " + str(datetime.now()) + "\n\n"
-        )
+        institution_data = {
+            "Institution Name": institution_name,
+            "Address": address,
+            "Contact 1": contact1,
+            "Contact 2": contact2,
+            "Email 1": email1,
+            "Email 2": email2,
+            "Account Address": account_address,
+            "UID": uid,
+            "Account Private Key": account_private_key,
+            "Date Time": str(datetime.now())
+        }
         
         if not con.w3.is_address(account_address):
             messagebox.showerror("Error", "Invalid Account Address!!")
@@ -80,7 +76,7 @@ def submit_form():
         else:
             messagebox.showinfo("Success", "Your Account balance is " + str(acc_bal) + " which is greater than minimum required balance which is " + str(thres))
             messagebox.showinfo("Success", "Institution data submitted successfully!")
-            MergeAdmin.save_to_file(institution_data, account_address, file_name)
+            MergeAdmin.save_to_file(institution_data, account_address)
 
     except ValueError as e:
         messagebox.showerror("Error", str(e))
@@ -96,7 +92,7 @@ def clear_form():
     entry_email2.delete(0, tk.END)
     entry_account_address.delete(0, tk.END)
     entry_uid.delete(0, tk.END)
-    entry_account_private_key.delete(0, tk.END)  # Clear the new field
+    entry_account_private_key.delete(0, tk.END)
     entry_file_name.delete(0, tk.END)
 
 def toggle_uid_visibility():
@@ -106,9 +102,6 @@ def toggle_uid_visibility():
     else:
         entry_uid.config(show='*')
         view_button.config(text='View')
-
-def record_transaction():
-    messagebox.showinfo("Transaction", "Record Transaction button clicked!")
 
 root = tk.Tk()
 root.title("Institution Details Form")
@@ -150,24 +143,17 @@ tk.Label(root, text="UID:", bg="#e0f7fa", fg="#00796b", font=label_font).grid(ro
 entry_uid = tk.Entry(root, show="*", font=entry_font)
 entry_uid.grid(row=7, column=1, padx=10, pady=5)
 
-tk.Label(root, text="File Name:", bg="#e0f7fa", fg="#00796b", font=label_font).grid(row=8, column=0, padx=10, pady=5, sticky=tk.W)
-entry_file_name = tk.Entry(root, font=entry_font)
-entry_file_name.grid(row=8, column=1, padx=10, pady=5)
-
-tk.Label(root, text="Account Private Key:", bg="#e0f7fa", fg="#00796b", font=label_font).grid(row=9, column=0, padx=10, pady=5, sticky=tk.W)
+tk.Label(root, text="Account Private Key:", bg="#e0f7fa", fg="#00796b", font=label_font).grid(row=8, column=0, padx=10, pady=5, sticky=tk.W)
 entry_account_private_key = tk.Entry(root, show="*", font=entry_font)
-entry_account_private_key.grid(row=9, column=1, padx=10, pady=5)
+entry_account_private_key.grid(row=8, column=1, padx=10, pady=5)
 
 submit_button = tk.Button(root, text="Submit", command=submit_form, bg="#00796b", fg="white", font=button_font)
-submit_button.grid(row=10, column=0, padx=10, pady=10)
+submit_button.grid(row=9, column=0, padx=10, pady=10)
 
 clear_button = tk.Button(root, text="Clear", command=clear_form, bg="#00796b", fg="white", font=button_font)
-clear_button.grid(row=10, column=1, padx=10, pady=10)
+clear_button.grid(row=9, column=1, padx=10, pady=10)
 
 view_button = tk.Button(root, text="View", command=toggle_uid_visibility, bg="#00796b", fg="white", font=button_font)
 view_button.grid(row=7, column=2, padx=10, pady=10)
-
-record_button = tk.Button(root, text="Record Transaction", command=record_transaction, bg="#00796b", fg="white", font=button_font)
-record_button.grid(row=10, column=2, padx=10, pady=10)
 
 root.mainloop()
