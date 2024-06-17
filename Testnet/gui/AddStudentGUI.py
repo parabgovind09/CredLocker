@@ -1,9 +1,27 @@
+import re
+import os
+import json
+import time
+import requests
+import MergeStudent
+import api.smartcontract.helper.AccountContractManager as acc_mgr
+import api.smartcontract.helper.Connection as con
+import api.smartcontract.helper.FirebaseHelper as fire
+import api.smartcontract.helper.Balance as bal
+import api.PinataCredentials
+import api.UploadOperation
+import api.FileExistenceChecker
+import api.DeleteOperation
 from tkinter import *
 from tkinter import ttk, filedialog
 from tkinter import messagebox
-import os
-import re
 from datetime import datetime
+from requests.exceptions import ConnectionError, Timeout, RequestException
+from api.smartcontract.helper.CopyDialog import CopyableDialog as dialog
+from urllib3.exceptions import MaxRetryError
+from eth_account import Account
+
+student_data = {}
 
 def validate_alpha_space(char):
     return all(x.isalpha() or x.isspace() for x in char)
@@ -21,6 +39,7 @@ def validate_email(email):
     return re.match(r"^[\w\.-]+@[\w\.-]+\.\w+$", email) is not None
 
 def choose_file():
+    path = ""
     file_path = filedialog.askopenfilename()
     if file_path:
         if not os.path.exists(file_path):
@@ -29,23 +48,6 @@ def choose_file():
         file_entry.config(state=NORMAL)
         file_entry.delete(0, END)
         file_entry.insert(0, file_path)
-        file_entry.config(state="readonly")
-        folder_entry.config(state=NORMAL)
-        folder_entry.delete(0, END)
-        folder_entry.config(state="readonly")
-
-def choose_folder():
-    folder_path = filedialog.askdirectory()
-    if folder_path:
-        if not os.path.exists(folder_path):
-            messagebox.showerror("Error", "Selected folder does not exist.")
-            return
-        folder_entry.config(state=NORMAL)
-        folder_entry.delete(0, END)
-        folder_entry.insert(0, folder_path)
-        folder_entry.config(state="readonly")
-        file_entry.config(state=NORMAL)
-        file_entry.delete(0, END)
         file_entry.config(state="readonly")
 
 def submit():
@@ -63,14 +65,11 @@ def submit():
         institution_name = e6.get().strip()
         accreditation_status = e7.get().strip()
         email1 = e8_1.get().strip()
-        email2 = e8_2.get().strip()
         contact_no1 = e9_1.get().strip()
-        telephone_no1 = e9_2.get().strip()
         address = e10.get().strip()
         date_of_issuance = e11.get().strip()
         type_of_credential = e12.get().strip()
         file_path = file_entry.get().strip()
-        folder_path = folder_entry.get().strip()
         account_address = entry_account_address.get().strip()
         uid = entry_uid.get().strip()
         account_private_key = entry_account_private_key.get().strip()
@@ -114,14 +113,8 @@ def submit():
         if not email1 or not validate_email(email1):
             raise ValueError("Invalid Email 1 format.")
         
-        if not email2 or not validate_email(email2):
-            raise ValueError("Invalid Email 2 format.")
-        
         if not contact_no1.isdigit() or len(contact_no1) not in {8, 10}:
             raise ValueError("Contact Number must be either 8 or 10 digits.")
-        
-        if not telephone_no1.isdigit() or len(telephone_no1) not in {8, 10}:
-            raise ValueError("Telephone Number must be either 8 or 10 digits.")
         
         if not address:
             raise ValueError("Address cannot be empty.")
@@ -132,11 +125,8 @@ def submit():
         if not type_of_credential:
             raise ValueError("Type of Credential cannot be empty.")
         
-        if not file_path and not folder_path:
-            raise ValueError("You must choose either a file or a folder.")
-        
-        if file_path and folder_path:
-            raise ValueError("You cannot choose both a file and a folder. Please select only one.")
+        if not file_path:
+            raise ValueError("You must choose a file.")
 
         if not account_address:
             raise ValueError("Account Address is required.")
@@ -150,7 +140,8 @@ def submit():
         if not account_private_key:
             raise ValueError("Account Private Key is required.")
 
-        student_data = {
+        global student_data
+        student_data= {
             "First Name": first_name.lower(),
             "Middle Name": middle_name.lower(),
             "Last Name": last_name.lower(),
@@ -162,17 +153,12 @@ def submit():
             "Institution Name": institution_name,
             "Institution Accreditation Status": accreditation_status,
             "Institution Email 1": email1.lower(),
-            "Institution Email 2": email2.lower(),
             "Institution Contact No.": contact_no1,
-            "Institution Telephone No.": telephone_no1,
             "Institution Address": address,
             "Date of Issuance": date_of_issuance,
             "Type of Credential": type_of_credential.lower(),
-            "File Path": file_path,
-            "Folder Path": folder_path,
             "Account Address": account_address,
             "UID": uid,
-            "Account Private Key": account_private_key,
             "Date Time": str(datetime.now())
         }
         
@@ -194,14 +180,32 @@ def submit():
             messagebox.showinfo("Failed", "Your Account balance is " + str(acc_bal) + " which is not more than minimum required balance which is " + str(thres))
         else:
             messagebox.showinfo("Success", "Your Account balance is " + str(acc_bal) + " which is greater than minimum required balance which is " + str(thres))
-            messagebox.showinfo("Success", "Student data submitted successfully!")
-            MergeAdmin.save_to_file(institution_data, account_address)
+            messagebox.showinfo("Success", "Student data submitted successfully!")            
+            new_ipfs_hash = api.UploadOperation.upload_to_ipfs(file_path)
+            if new_ipfs_hash is None:
+                messagebox.showerror("Error", "Failed to upload new file to IPFS")
+                return False
+            
+            tx_hash = acc_mgr.store_data(acc_mgr.contract_address, account_address, account_private_key, new_ipfs_hash)
+            student_data["Transaction Hash"] = tx_hash
+            dialog_obj = dialog(parent,"Transaction Hash",tx_hash,"Data stored","Success","Transaction Hash Copied To Clipboard")
+            time.sleep(5)
+            messagebox.showinfo("Note", "It will be good if you record your transaction data for future.")
+            path = ""
 
     except ValueError as e:
         messagebox.showerror("Error", str(e))
     except Exception as e:
         messagebox.showerror("Error", f"An unexpected error occurred: {str(e)}")
 
+def record_transaction():
+    global student_data
+    if not student_data:
+        messagebox.showerror("Error", "No Data Recorded. Please enter the deatils.!!")
+        return None
+    MergeStudent.record_transaction_to_ipfs(student_data)
+    student_data = {}
+    
 def clear_form():
     e1.delete(0, END)
     e2.delete(0, END)
@@ -216,9 +220,7 @@ def clear_form():
     e6.delete(0, END)
     e7.delete(0, END)
     e8_1.delete(0, END)
-    e8_2.delete(0, END)
     e9_1.delete(0, END)
-    e9_2.delete(0, END)
     e10.delete(0, END)
     e11.delete(0, END)
     e11.insert(0, datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
@@ -226,12 +228,10 @@ def clear_form():
     file_entry.config(state=NORMAL)
     file_entry.delete(0, END)
     file_entry.config(state="readonly")
-    folder_entry.config(state=NORMAL)
-    folder_entry.delete(0, END)
-    folder_entry.config(state="readonly")
     entry_account_address.delete(0, END)
     entry_uid.delete(0, END)
     entry_account_private_key.delete(0, END)
+    student_data = {}
 
 parent = Tk()
 parent.title("Student Data Entry")
@@ -304,67 +304,55 @@ ttk.Label(label_frame_1, text="Institution Accreditation Status").grid(row=9, co
 e7 = ttk.Entry(label_frame_1, font=("Helvetica", 12))
 e7.grid(row=9, column=1, padx=10, pady=10, sticky=W)
 
-ttk.Label(label_frame_1, text="Institution Email 1").grid(row=10, column=0, padx=10, pady=10, sticky=E)
-e8_1 = ttk.Entry(label_frame_1, font=("Helvetica", 12))
+ttk.Label(label_frame_2, text="Institution Email 1").grid(row=10, column=0, padx=10, pady=10, sticky=E)
+e8_1 = ttk.Entry(label_frame_2, font=("Helvetica", 12))
 e8_1.grid(row=10, column=1, padx=10, pady=10, sticky=W)
 
-ttk.Label(label_frame_2, text="Institution Email 2").grid(row=11, column=0, padx=10, pady=10, sticky=E)
-e8_2 = ttk.Entry(label_frame_2, font=("Helvetica", 12))
-e8_2.grid(row=11, column=1, padx=10, pady=10, sticky=W)
+ttk.Label(label_frame_2, text="Institution Contact No.").grid(row=11, column=0, padx=10, pady=10, sticky=E)
+e9_1 = ttk.Entry(label_frame_2, font=("Helvetica", 11), validate="key", validatecommand=vcmd_digit_8_or_10)
+e9_1.grid(row=11, column=1, padx=10, pady=10, sticky=W)
 
-ttk.Label(label_frame_2, text="Institution Contact No.").grid(row=12, column=0, padx=10, pady=10, sticky=E)
-e9_1 = ttk.Entry(label_frame_2, font=("Helvetica", 12), validate="key", validatecommand=vcmd_digit_8_or_10)
-e9_1.grid(row=12, column=1, padx=10, pady=10, sticky=W)
-
-ttk.Label(label_frame_2, text="Institution Contact No.").grid(row=13, column=0, padx=10, pady=10, sticky=E)
-e9_2 = ttk.Entry(label_frame_2, font=("Helvetica", 12), validate="key", validatecommand=vcmd_digit_8_or_10)
-e9_2.grid(row=13, column=1, padx=10, pady=10, sticky=W)
-
-ttk.Label(label_frame_2, text="Institution Address").grid(row=14, column=0, padx=10, pady=10, sticky=E)
+ttk.Label(label_frame_2, text="Institution Address").grid(row=12, column=0, padx=10, pady=10, sticky=E)
 e10 = ttk.Entry(label_frame_2, font=("Helvetica", 12))
-e10.grid(row=14, column=1, padx=10, pady=10, sticky=W)
+e10.grid(row=12, column=1, padx=10, pady=10, sticky=W)
 
-ttk.Label(label_frame_2, text="Credential Issued On (dd-mm-yyyy hh:mm:ss)").grid(row=15, column=0, padx=10, pady=10, sticky=E)
+ttk.Label(label_frame_2, text="Credential Issued On (dd-mm-yyyy hh:mm:ss)").grid(row=13, column=0, padx=10, pady=10, sticky=E)
 e11 = ttk.Entry(label_frame_2, font=("Helvetica", 12))
-e11.grid(row=15, column=1, padx=10, pady=10, sticky=W)
+e11.grid(row=13, column=1, padx=10, pady=10, sticky=W)
 e11.insert(0, datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
 
-ttk.Label(label_frame_2, text="Credential Type").grid(row=16, column=0, padx=10, pady=10, sticky=E)
+ttk.Label(label_frame_2, text="Credential Type").grid(row=14, column=0, padx=10, pady=10, sticky=E)
 e12 = ttk.Entry(label_frame_2, font=("Helvetica", 12))
-e12.grid(row=16, column=1, padx=10, pady=10, sticky=W)
+e12.grid(row=14, column=1, padx=10, pady=10, sticky=W)
 
-ttk.Label(label_frame_2, text="Choose File").grid(row=17, column=0, padx=10, pady=10, sticky=E)
+ttk.Label(label_frame_2, text="Choose File").grid(row=15, column=0, padx=10, pady=10, sticky=E)
 file_frame = Frame(label_frame_2, bg="#f0f4f7")
-file_frame.grid(row=17, column=1, padx=10, pady=10, sticky=W)
+file_frame.grid(row=15, column=1, padx=10, pady=10, sticky=W)
 file_button = ttk.Button(file_frame, text="Choose File", command=choose_file)
 file_button.grid(row=0, column=0, padx=5)
 file_entry = ttk.Entry(file_frame, font=("Helvetica", 12), state="readonly")
 file_entry.grid(row=0, column=1, padx=5)
 
-ttk.Label(label_frame_2, text="Choose Folder").grid(row=18, column=0, padx=10, pady=10, sticky=E)
-folder_frame = Frame(label_frame_2, bg="#f0f4f7")
-folder_frame.grid(row=18, column=1, padx=10, pady=10, sticky=W)
-folder_button = ttk.Button(folder_frame, text="Choose Folder", command=choose_folder)
-folder_button.grid(row=0, column=0, padx=5)
-folder_entry = ttk.Entry(folder_frame, font=("Helvetica", 12), state="readonly")
-folder_entry.grid(row=0, column=1, padx=5)
 
-ttk.Label(label_frame_2, text="Account Address:").grid(row=19, column=0, padx=10, pady=10, sticky=E)
+ttk.Label(label_frame_2, text="Account Address:").grid(row=16, column=0, padx=10, pady=10, sticky=E)
 entry_account_address = ttk.Entry(label_frame_2, font=("Helvetica", 12))
-entry_account_address.grid(row=19, column=1, padx=10, pady=10, sticky=W)
+entry_account_address.grid(row=16, column=1, padx=10, pady=10, sticky=W)
 
-ttk.Label(label_frame_2, text="UID:").grid(row=20, column=0, padx=10, pady=10, sticky=E)
+ttk.Label(label_frame_2, text="UID:").grid(row=17, column=0, padx=10, pady=10, sticky=E)
 entry_uid = ttk.Entry(label_frame_2, show="*", font=("Helvetica", 12))
-entry_uid.grid(row=20, column=1, padx=10, pady=10, sticky=W)
+entry_uid.grid(row=17, column=1, padx=10, pady=10, sticky=W)
 
-ttk.Label(label_frame_2, text="Account Private Key:").grid(row=21, column=0, padx=10, pady=10, sticky=E)
+ttk.Label(label_frame_2, text="Account Private Key:").grid(row=18, column=0, padx=10, pady=10, sticky=E)
 entry_account_private_key = ttk.Entry(label_frame_2, show="*", font=("Helvetica", 12))
-entry_account_private_key.grid(row=21, column=1, padx=10, pady=10, sticky=W)
+entry_account_private_key.grid(row=18, column=1, padx=10, pady=10, sticky=W)
 
 clear_button = ttk.Button(parent, text="Clear", command=clear_form)
-clear_button.grid(row=19, column=0, padx=10, pady=10)
+clear_button.grid(row=16, column=0, padx=10, pady=10)
+
+record_button = ttk.Button(parent, text="Record Transaction", command=record_transaction)
+record_button.grid(row=16, column=1, padx=10, pady=10)
 
 submit_button = ttk.Button(parent, text="Submit", command=submit)
-submit_button.grid(row=19, column=1, padx=20, pady=10)
+submit_button.grid(row=16, column=2, padx=10, pady=10)
 
 parent.mainloop()

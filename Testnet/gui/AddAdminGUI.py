@@ -93,7 +93,6 @@ def clear_form():
     entry_account_address.delete(0, tk.END)
     entry_uid.delete(0, tk.END)
     entry_account_private_key.delete(0, tk.END)
-    entry_file_name.delete(0, tk.END)
 
 def toggle_uid_visibility():
     if entry_uid.cget('show') == '*':

@@ -9,6 +9,3 @@ def upload_to_ipfs(file_path):
         return response.json()['IpfsHash']
     else:
         return None
-
-
-

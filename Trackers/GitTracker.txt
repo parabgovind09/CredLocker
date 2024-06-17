@@ -366,3 +366,94 @@ To https://github.com/parabgovind09/CredLocker.git
 
 ------------------------------------------------------------------------------------------------------------
 
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop (main)
+$ git clone https://github.com/parabgovind09/CredLocker.git
+Cloning into 'CredLocker'...
+remote: Enumerating objects: 110, done.
+remote: Counting objects: 100% (47/47), done.
+remote: Compressing objects: 100% (45/45), done.
+remote: Total 110 (delta 8), reused 39 (delta 2), pack-reused 63
+Receiving objects: 100% (110/110), 51.96 MiB | 4.08 MiB/s, done.
+Resolving deltas: 100% (25/25), done.
+Updating files: 100% (34/34), done.
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop (main)
+$ cd CredLocker
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Testnet/gui/AddAdminGUI.py
+        modified:   Testnet/gui/AddStudentGUI.py
+        modified:   Testnet/gui/MergeAdmin.py
+        modified:   Testnet/gui/__pycache__/MergeAdmin.cpython-39.pyc
+        modified:   Testnet/gui/api/DeleteOperation.py
+        modified:   Testnet/gui/api/FileExistenceChecker.py
+        modified:   Testnet/gui/api/HashGenerator.py
+        modified:   Testnet/gui/api/PinataCredentials.py
+        modified:   Testnet/gui/api/RetrieveOperation.py
+        modified:   Testnet/gui/api/UpdateOperation.py
+        modified:   Testnet/gui/api/UploadOperation.py
+        modified:   Testnet/gui/api/VerifyOperation.py
+        modified:   Testnet/gui/api/smartcontract/helper/Connection.py
+        modified:   Trackers/CMDTracker.txt
+        modified:   Trackers/GitTracker.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git add .
+warning: in the working copy of 'Testnet/gui/AddAdminGUI.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/AddStudentGUI.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/MergeAdmin.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/DeleteOperation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/FileExistenceChecker.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/HashGenerator.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/PinataCredentials.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/RetrieveOperation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/UpdateOperation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/UploadOperation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/VerifyOperation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Testnet/gui/api/smartcontract/helper/Connection.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Trackers/CMDTracker.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Trackers/GitTracker.txt', LF will be replaced by CRLF the next time Git touches it
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git commit -m "AddAdmin GUI v1"
+[main 4ef9fb7] AddAdmin GUI v1
+ 7 files changed, 395 insertions(+), 69 deletions(-)
+ create mode 100644 .gitignore
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$ git push origin main
+Enumerating objects: 24, done.
+Counting objects: 100% (24/24), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (13/13), 8.37 KiB | 1.20 MiB/s, done.
+Total 13 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To https://github.com/parabgovind09/CredLocker.git
+   87f573b..4ef9fb7  main -> main
+
+Minal@DESKTOP-TCGN9BT MINGW64 ~/Desktop/CredLocker (main)
+$
+---------------------------------------------------------------------------------------------------------------------------------------------------------------

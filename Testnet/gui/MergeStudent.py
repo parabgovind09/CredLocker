@@ -1,51 +1,31 @@
-import tkinter as tk
-import os
 import json
 import requests
 import api.smartcontract.helper.Connection as con
 import api.smartcontract.helper.FirebaseHelper as fire
+import api.PinataCredentials
 import api.UploadOperation
 import api.FileExistenceChecker
 import api.DeleteOperation
-import api.PinataCredentials
-from datetime import datetime
+from tkinter import *
 from tkinter import messagebox
+from datetime import datetime
 from requests.exceptions import ConnectionError, Timeout, RequestException
 from urllib3.exceptions import MaxRetryError
 
-def save_to_file(institution_data,account_address):
+def record_transaction_to_ipfs(student_data):
     try:
-        root = tk.Tk()
-        root.withdraw()
-
         if con.is_internet_available():
-            fire_newHash, fire_dateTime, fire_preHash = fire.read_specific_data('AdminRecords/-O-_8pzzSg9kEOg8ib0u')
+            fire_newHash, fire_dateTime, fire_preHash = fire.read_specific_data('StudentRecords/-O-_pvGMXImtLxuxmwuM')
             if fire_newHash is not None and fire_dateTime is not None and fire_preHash is not None:
                 if api.FileExistenceChecker.check_file_existence(fire_newHash):
                     response = requests.get(f'https://gateway.pinata.cloud/ipfs/{fire_newHash}')
-                    # Check if the response content is empty
                     if not response.content.strip():
-                        content = []  # Set to an empty list if the content is empty
+                        content = []
                     else:
-                        content = response.json()  # Parse the response as JSON
-
-                        # If the content is a dict, wrap it in a list to maintain consistent structure
+                        content = response.json()
                         if isinstance(content, dict):
                             content = [content]
-                    modified_content = {
-                        "Institution Name": institution_data['Institution Name'],
-                        "Address": institution_data['Address'],
-                        "Contact 1": institution_data['Contact 1'],
-                        "Contact 2": institution_data['Contact 2'],
-                        "Email 1": institution_data['Email 1'],
-                        "Email 2": institution_data['Email 2'],
-                        "Account Address": institution_data['Account Address'],
-                        "UID": institution_data['UID'],
-                        "Account Private Key": institution_data['Account Private Key'],
-                        "Date Time": institution_data['Date Time']
-                    }
-                    # Append the new record to the existing content
-                    content.append(modified_content)
+                    content.append(student_data)
                     headers = {
                         'Content-Type': 'application/json',
                         'pinata_api_key': api.PinataCredentials.credential['PINATA_API_KEY'],
@@ -53,7 +33,7 @@ def save_to_file(institution_data,account_address):
                     }
                     payload = {
                         'pinataOptions': {'cidVersion': 0},
-                        'pinataMetadata': {'name': 'AdminRecords.json'},
+                        'pinataMetadata': {'name': 'StudentRecords.json'},
                         'pinataContent': content
                     }
                     response = requests.post('https://api.pinata.cloud/pinning/pinJSONToIPFS', headers=headers, json=payload)
@@ -69,12 +49,11 @@ def save_to_file(institution_data,account_address):
                             "DateTime": fire_dateTime,
                             "Previous hash": fire_preHash
                     }
-                    
                     if api.DeleteOperation.delete_from_ipfs(fire_newHash):
-                        if fire.update_data('AdminRecords/-O-_8pzzSg9kEOg8ib0u',new_data):
-                            messagebox.showinfo("Success", "Admin Record Recorded")
+                        if fire.update_data('StudentRecords/-O-_pvGMXImtLxuxmwuM',new_data):
+                            messagebox.showinfo("Success", "Student Record Recorded")
                         else:
-                            messagebox.showerror("Error", "Please check your internet connection and try again.")
+                            messagebox.showerror("Error", "Please check your internet connection and try again.")                           
                     else:
                         messagebox.showerror("Error", "Please check your internet connection and try again.")
                 else:
@@ -82,9 +61,9 @@ def save_to_file(institution_data,account_address):
             else:
                 messagebox.showerror("Error", "Failed to Collect Data from Hosting Database, Please check your internet connection and try again.")
         else:
-            messagebox.showerror("Error", "Please check your internet connection and try again.")
+            messagebox.showerror("Error", "Please check your internet connection and try again later.")
 
-        root.mainloop()
+        student_data = {}
 
     except (ConnectionError, MaxRetryError, Timeout) as e:
         messagebox.showerror("Error", "Please check your internet connection and try again.")
