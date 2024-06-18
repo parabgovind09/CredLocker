@@ -185,13 +185,24 @@ def submit():
             if new_ipfs_hash is None:
                 messagebox.showerror("Error", "Failed to upload new file to IPFS")
                 return False
-            
-            tx_hash = acc_mgr.store_data(acc_mgr.contract_address, account_address, account_private_key, new_ipfs_hash)
-            student_data["Transaction Hash"] = tx_hash
-            dialog_obj = dialog(parent,"Transaction Hash",tx_hash,"Data stored","Success","Transaction Hash Copied To Clipboard")
-            time.sleep(5)
-            messagebox.showinfo("Note", "It will be good if you record your transaction data for future.")
-            path = ""
+            parts = file_path.split('/')
+            file_name = parts[-1]
+            data = {
+                "hash": new_ipfs_hash,
+                "name": file_name,
+            }
+
+            # Convert Python dictionary to JSON string
+            json_data = json.dumps(data)
+            tx_hash = acc_mgr.store_data(acc_mgr.contract_address, account_address, account_private_key, json_data)
+            if tx_hash is not None:
+                student_data["Transaction Hash"] = tx_hash
+                dialog_obj = dialog(parent,"Transaction Hash",tx_hash,"Data stored","Success","Transaction Hash Copied To Clipboard")
+                time.sleep(5)
+                messagebox.showinfo("Note", "It will be good if you record your transaction data for future.")
+                path = ""
+            else:
+                messagebox.showerror("Error", "Please check your internet connection and try again later.")
 
     except ValueError as e:
         messagebox.showerror("Error", str(e))

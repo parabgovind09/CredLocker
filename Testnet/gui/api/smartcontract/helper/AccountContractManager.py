@@ -61,7 +61,6 @@ bytecode = '6080604052348015600e575f80fd5b5061078c8061001c5f395ff3fe608060405234
 
 # Deploy the contract
 def deploy_contract(deployer_address,deployer_private_key):
-    import Connection as con
     UserDataStorage = con.w3.eth.contract(abi=abi, bytecode=bytecode)
 
     # Build transaction
@@ -84,42 +83,46 @@ def deploy_contract(deployer_address,deployer_private_key):
 
 # Store data for a user
 def store_data(contract, address, private_key, data):
-    contract_instance = con.w3.eth.contract(address=contract, abi=abi)
-
-    # Build transaction
-    txn_dict = contract_instance.functions.storeData(data).build_transaction({
-        'from': address,
-        'nonce': con.w3.eth.get_transaction_count(address),
-        'gas': 2000000,
-        'gasPrice': con.w3.to_wei('10', 'gwei')
-    })
-
-    # Sign transaction
-    signed_txn = con.w3.eth.account.sign_transaction(txn_dict, private_key=private_key)
-
-    # Send transaction
-    tx_hash = con.w3.eth.send_raw_transaction(signed_txn.rawTransaction)
-
-    return tx_hash.hex()
+    if con.is_internet_available():
+        contract_instance = con.w3.eth.contract(address=contract, abi=abi)
+        # Build transaction
+        txn_dict = contract_instance.functions.storeData(data).build_transaction({
+            'from': address,
+            'nonce': con.w3.eth.get_transaction_count(address),
+            'gas': 2000000,
+            'gasPrice': con.w3.to_wei('10', 'gwei')
+        })
+        # Sign transaction
+        signed_txn = con.w3.eth.account.sign_transaction(txn_dict, private_key=private_key)
+        # Send transaction
+        tx_hash = con.w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+        return tx_hash.hex()
+    else:
+        return None
 
 # Retrieve data using event logs
 def retrieve_data(contract, tx_hash):
-    contract_instance = con.w3.eth.contract(address=contract, abi=abi)
+    if con.is_internet_available():
+        try:
+            contract_instance = con.w3.eth.contract(address=contract, abi=abi)
 
-    # Retrieve transaction receipt
-    receipt = con.w3.eth.get_transaction_receipt(tx_hash)
+            # Retrieve transaction receipt
+            receipt = con.w3.eth.get_transaction_receipt(tx_hash)
 
-    # Retrieve event logs
-    logs = contract_instance.events.DataStored().process_receipt(receipt)
+            # Retrieve event logs
+            logs = contract_instance.events.DataStored().process_receipt(receipt)
 
-    # Print retrieved data
-    if logs:
-        user = logs[0]['args']['user']
-        stored_data = logs[0]['args']['data']
-        print(f"User: {user}")
-        print(f"Stored Data: {stored_data}")
+            # Print retrieved data
+            if logs:
+                user = logs[0]['args']['user']
+                stored_data = logs[0]['args']['data']
+                return True, user, stored_data
+            else:
+                return False, None, None
+        except Exception as e:
+            return False, None, None
     else:
-        print("No DataStored event found in the transaction logs.")
+        return False, None, None
 
 
 ### Deploy contract
@@ -137,4 +140,8 @@ contract_address = "0xe0699ef746B5E4881FaB67e252970f8C620dfF81"
 ##time.sleep(10)  # Adjust as necessary for the transaction to be mined
 ##
 ### Retrieve data using transaction hash
-##retrieve_data(contract_address, tx_hash)
+##flag, user, stored_data = retrieve_data(contract_address, tx_hash)
+##if flag and user is not None and stored_data is not None:
+##    print("Successfull", f"User :{user} and Data :{stored_data}")
+##else:
+##    print("Failed", f"No such transaction with hash: {tx_hash}")
