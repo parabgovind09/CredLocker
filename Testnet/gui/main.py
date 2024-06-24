@@ -3,32 +3,44 @@ import re
 import  json
 import api.ReadFileData
 import subprocess
+import api.FileExistenceChecker
 import api.smartcontract.helper.FirebaseHelper as fire
+import api.smartcontract.helper.Connection as con
 from tkinter import messagebox
 from CredVerify import CredVerify
 from AddAdminGUI import AddAdminGUI
 import AddStudentGUI
 
 def admin_login(username, password):
-    byte_data = api.ReadFileData.read_ipfs_content("QmSygUpFJLpzDPxYdjxy57u7wLm3hgHpDgYAsxmSFV9Brj")
-    json_str = byte_data.decode('utf-8')
-    data = json.loads(json_str)
-    search_term = username
-    search_term1 = password
-    filtered_results = [entry for entry in data if 
-                        (search_term == entry.get('Institution Name', '') or
-                         search_term == entry.get('Email 1', '') or
-                         search_term == entry.get('Email 2', '') or
-                         search_term == entry.get('Contact 1', '') or
-                         search_term == entry.get('Contact 2', ''))
-                        and (search_term1 == entry.get('UID', ''))]
-    
-    if filtered_results:
-        for result in filtered_results:
-            messagebox.showinfo("Success", "Admin logged in successfully!")
-            AddStudentGUI.main()
+    if con.is_internet_available():
+        fire_newHash, fire_dateTime, fire_preHash = fire.read_specific_data('AdminRecords/-O-_8pzzSg9kEOg8ib0u')
+        if fire_newHash is not None and fire_dateTime is not None and fire_preHash is not None:
+            if api.FileExistenceChecker.check_file_existence(fire_newHash):
+                byte_data = api.ReadFileData.read_ipfs_content(fire_newHash)
+                json_str = byte_data.decode('utf-8')
+                data = json.loads(json_str)
+                search_term = username
+                search_term1 = password
+                filtered_results = [entry for entry in data if 
+                                    (search_term == entry.get('Institution Name', '') or
+                                     search_term == entry.get('Email 1', '') or
+                                     search_term == entry.get('Email 2', '') or
+                                     search_term == entry.get('Contact 1', '') or
+                                     search_term == entry.get('Contact 2', ''))
+                                    and (search_term1 == entry.get('UID', ''))]
+                
+                if filtered_results:
+                    for result in filtered_results:
+                        messagebox.showinfo("Success", "Admin logged in successfully!")
+                        AddStudentGUI.main()
+                else:
+                    messagebox.showerror("Error", "No matching data found for the provided credentials.")
+            else:
+                messagebox.showerror("Error", "Content Verification Failed with Hosting Database, Please check your internet connection and try again or Contact to Developer")
+        else:
+            messagebox.showerror("Error", "Failed to Collect Data from Hosting Database, Please check your internet connection and try again.")
     else:
-        messagebox.showerror("Error", "No matching data found for the provided credentials.")
+        messagebox.showerror("Error", "Please check your internet connection and try again.")
 
 def developer_login(username, password):
     if fire.authenticate_developer(username, password):
